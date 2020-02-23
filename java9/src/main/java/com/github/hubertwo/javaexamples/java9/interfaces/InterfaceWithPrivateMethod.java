@@ -10,6 +10,14 @@ public interface InterfaceWithPrivateMethod {
     }
 
     /**
+     * Static method of interface.
+     */
+    static String getStaticMessage(String name) {
+        String message = "Hello %s! Static method does not have access to private interface methods.";
+        return String.format(message, name);
+    }
+
+    /**
      * Private method.
      */
     private String buildMessage(String name) {

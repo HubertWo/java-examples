@@ -15,14 +15,14 @@ class PrivateInterfaceMethodTest {
 
         InterfaceWithPrivateMethod interfaceWithPrivateMethod = new InterfaceWithPrivateMethodImpl();
 
-        String actualMessage = interfaceWithPrivateMethod.getMessage(givenName);
+        final String actualMessage = interfaceWithPrivateMethod.getMessage(givenName);
 
         assertThat(actualMessage)
                 .isEqualTo(expectedMessage);
     }
 
     @Test
-    @DisplayName("Override default method of interface.")
+    @DisplayName("Override default method of an interface")
     void overrideInterfaceDefaultMethod() {
         final String givenName = "Patrycja";
         final String expectedMessage = "Message from overridden default method. Hello Patrycja! This message comes from private method of com.github.hubertwo.javaexamples.java9.interfaces.InterfaceWithPrivateMethod";
@@ -32,9 +32,22 @@ class PrivateInterfaceMethodTest {
             // Anonymous class.
         };
 
-        String actualMessage = interfaceThatExtendsOtherInterface.getMessage(givenName);
+        final String actualMessage = interfaceThatExtendsOtherInterface.getMessage(givenName);
 
         assertThat(actualMessage)
                 .isEqualTo(expectedMessage);
     }
+
+    @Test
+    @DisplayName("Calling interface static method")
+    void staticMethod() {
+        final String givenName = "Anna";
+        final String expectedMessage = "Hello Anna! Static method does not have access to private interface methods.";
+
+        final String actualMessage = InterfaceWithPrivateMethod.getStaticMessage(givenName);
+
+        assertThat(actualMessage)
+                .isEqualTo(expectedMessage);
+    }
+
 }
