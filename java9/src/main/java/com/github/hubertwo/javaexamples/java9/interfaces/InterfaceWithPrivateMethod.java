@@ -10,7 +10,7 @@ public interface InterfaceWithPrivateMethod {
     }
 
     /**
-     * Private method.s
+     * Private method.
      */
     private String buildMessage(String name) {
         String message = "Hello %s! This message comes from private method of %s";
